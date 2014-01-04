@@ -45,6 +45,8 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cmp.fs" />
+    <Compile Include="Git.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />
   </ItemGroup>
