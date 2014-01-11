@@ -26,14 +26,17 @@ let pushto mainBranchName altBranches =
         let! _ = git "push"
         let! _ = checkout currentBranch
 
-        for branch in altBranches do
-            let! _ = checkout branch
-            for commit in commits do
-                let! _ = git (sprintf "cherry-pick %s" commit)
-                let! _ = git "push"
-                ()
+        if List.isEmpty altBranches = false then
+            for branch in altBranches do
+                let! _ = checkout branch
+                for commit in commits do
+                    let! _ = git (sprintf "cherry-pick %s" commit)
+                    let! _ = git "push"
+                    ()
+            let! _ = checkout currentBranch
+            ()
 
-        return! checkout currentBranch }
+        return "all done" }
     
 [<EntryPoint>]
 let main argv = 
