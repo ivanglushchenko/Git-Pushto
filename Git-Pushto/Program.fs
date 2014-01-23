@@ -29,6 +29,7 @@ let pushto mainBranchName altBranches =
         if List.isEmpty altBranches = false then
             for branch in altBranches do
                 let! _ = checkout branch
+                let! _ = git "pull"
                 for commit in commits do
                     let! _ = git (sprintf "cherry-pick %s" commit)
                     let! _ = git "push"
